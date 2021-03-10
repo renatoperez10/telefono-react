@@ -2,6 +2,7 @@ import {  useState } from "react"
 
 function App() {
   const [numTelefono, setNumTelefono] = useState("");
+  const [estaLlamando, setEstaLlamando] = useState(false);
 
   const numerosBotones = () => {
     let botones = [];
@@ -32,8 +33,10 @@ function App() {
         </div>
         <div class="acciones">
           <span class="numero">{numTelefono}</span>
-                <a href="llamar" class="llamar">Llamar</a>
-                <a href="colgar" class="colgar activo">Colgar</a>
+            {estaLlamando ? 
+              <a href="colgar" class="colgar activo">Colgar</a>: 
+              <a href="llamar" class="llamar">Llamar</a>
+            }
         </div>
       </main>
     </div>
