@@ -38,20 +38,20 @@ function App() {
   }
 
   return (
-    <div class="contenedor">
-      {estaLlamando ? <span class="mensaje">Llamando...</span> : ""}
-      <main class="telefono">
-        <div class="botones">
-          <ol class="teclado">
+    <div className="contenedor">
+      {estaLlamando ? <span className="mensaje">Llamando...</span> : ""}
+      <main className="telefono">
+        <div className="botones">
+          <ol className="teclado">
             {numerosBotones().map(nBoton => <li key={nBoton}><button disabled={estaLlamando} onClick={() => marcarNumero(nBoton)} >{nBoton}</button></li>)}
-            <li><button disabled={estaLlamando} onClick={borrarNumero} class="big">borrar</button></li>
+            <li><button disabled={estaLlamando} onClick={borrarNumero} className="big">borrar</button></li>
           </ol>
         </div>
-        <div class="acciones">
-          <span class="numero">{numTelefono}</span>
+        <div className="acciones">
+          <span className="numero">{numTelefono}</span>
           {estaLlamando ?
-            <a onClick={colgar} href="colgar" class="colgar activo">Colgar</a> :
-            <a onClick={llamar} href="llamar" class={`llamar ${numTelefono.length === 9 ? "activo" : ""}`}>Llamar</a>
+            <a onClick={colgar} href="colgar" className="colgar activo">Colgar</a> :
+            <a onClick={llamar} href="llamar" className={`llamar ${numTelefono.length === 9 ? "activo" : ""}`}>Llamar</a>
           }
         </div>
       </main>
