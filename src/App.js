@@ -1,4 +1,4 @@
-import {  useState } from "react"
+import { useState } from "react"
 
 function App() {
   const [numTelefono, setNumTelefono] = useState("");
@@ -6,7 +6,7 @@ function App() {
 
   const numerosBotones = () => {
     let botones = [];
-    for(let i = 1; i < 10; i++){
+    for (let i = 1; i < 10; i++) {
       botones.push(i)
     }
     botones.push(0);
@@ -14,7 +14,9 @@ function App() {
   }
 
   const marcarNumero = (num) => {
-    setNumTelefono(numTelefono + num + "")
+    if (numTelefono.length < 9) {
+      setNumTelefono(numTelefono + num + "")
+    }
   }
   const borrarNumero = () => {
     setNumTelefono(numTelefono.slice(0, -1))
@@ -37,10 +39,10 @@ function App() {
         </div>
         <div class="acciones">
           <span class="numero">{numTelefono}</span>
-            {estaLlamando ?
-              <a onClick={llamarColgar} href="colgar" class="colgar activo">Colgar</a>:
-              <a onClick={llamarColgar} href="llamar" class={`llamar ${numTelefono.length === 9 ? "activo" : ""}`}>Llamar</a>
-            }
+          {estaLlamando ?
+            <a onClick={llamarColgar} href="colgar" class="colgar activo">Colgar</a> :
+            <a onClick={llamarColgar} href="llamar" class={`llamar ${numTelefono.length === 9 ? "activo" : ""}`}>Llamar</a>
+          }
         </div>
       </main>
     </div>
