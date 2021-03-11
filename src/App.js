@@ -3,6 +3,7 @@ import { useState } from "react"
 function App() {
   const [numTelefono, setNumTelefono] = useState("");
   const [estaLlamando, setEstaLlamando] = useState(false);
+  const [timer, setTimer] = useState(null);
 
   const numerosBotones = () => {
     let botones = [];
@@ -22,9 +23,18 @@ function App() {
     setNumTelefono(numTelefono.slice(0, -1))
   }
 
-  const llamarColgar = (e) => {
+  const llamar = (e) => {
     e.preventDefault();
-    setEstaLlamando(!estaLlamando);
+    setEstaLlamando(true)
+    setTimer(setTimeout(() => {
+      setEstaLlamando(false);
+    }, 5000))
+  }
+
+  const colgar = (e) => {
+    e.preventDefault();
+    setEstaLlamando(false)
+    clearInterval(timer);
   }
 
   return (
@@ -40,8 +50,8 @@ function App() {
         <div class="acciones">
           <span class="numero">{numTelefono}</span>
           {estaLlamando ?
-            <a onClick={llamarColgar} href="colgar" class="colgar activo">Colgar</a> :
-            <a onClick={llamarColgar} href="llamar" class={`llamar ${numTelefono.length === 9 ? "activo" : ""}`}>Llamar</a>
+            <a onClick={colgar} href="colgar" class="colgar activo">Colgar</a> :
+            <a onClick={llamar} href="llamar" class={`llamar ${numTelefono.length === 9 ? "activo" : ""}`}>Llamar</a>
           }
         </div>
       </main>
