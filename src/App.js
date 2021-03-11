@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div class="contenedor">
-      <span class="mensaje">Llamando...</span>
+      {estaLlamando ? <span class="mensaje">Llamando...</span> : ""}
       <main class="telefono">
         <div class="botones">
           <ol class="teclado">
