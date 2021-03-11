@@ -16,7 +16,7 @@ function App() {
 
   const marcarNumero = (num) => {
     if (numTelefono.length < 9) {
-      setNumTelefono(numTelefono + num + "")
+      setNumTelefono(numTelefono + num)
     }
   }
   const borrarNumero = () => {
