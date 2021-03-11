@@ -20,21 +20,26 @@ function App() {
     setNumTelefono(numTelefono.slice(0, -1))
   }
 
+  const llamarColgar = (e) => {
+    e.preventDefault();
+    setEstaLlamando(!estaLlamando);
+  }
+
   return (
     <div class="contenedor">
       <span class="mensaje">Llamando...</span>
       <main class="telefono">
         <div class="botones">
           <ol class="teclado">
-            {numerosBotones().map(nBoton => <li key={nBoton}><button onClick={() => marcarNumero(nBoton)} >{nBoton}</button></li>)}
-            <li><button onClick={borrarNumero} class="big">borrar</button></li>
+            {numerosBotones().map(nBoton => <li key={nBoton}><button disabled={estaLlamando} onClick={() => marcarNumero(nBoton)} >{nBoton}</button></li>)}
+            <li><button disabled={estaLlamando} onClick={borrarNumero} class="big">borrar</button></li>
           </ol>
         </div>
         <div class="acciones">
           <span class="numero">{numTelefono}</span>
             {estaLlamando ?
-              <a href="colgar" class="colgar activo">Colgar</a>:
-              <a href="llamar" class="llamar">Llamar</a>
+              <a onClick={llamarColgar} href="colgar" class="colgar activo">Colgar</a>:
+              <a onClick={llamarColgar} href="llamar" class={`llamar ${numTelefono.length === 9 ? "activo" : ""}`}>Llamar</a>
             }
         </div>
       </main>
